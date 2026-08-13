@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export function Logo() {
-  return <Link className="official-logo" href="/" aria-label="Paris Passion Events home"><Image src="/paris-passion-logo-white.png" width={520} height={421} alt="Paris Passion Events — adding colour to your events" /></Link>;
+  return <Link className="official-logo" href="/" aria-label="Paris Passion Events home"><Image src="/paris-passion-logo-official.jpeg" width={1600} height={1372} alt="Paris Passion Events — adding colour to your events" priority /></Link>;
 }
 
 export function Header() {
