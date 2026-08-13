@@ -2,7 +2,7 @@ name: Deploy GitHub Pages preview
 
 on:
   push:
-    branches: ["codex/github-pages-preview"]
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
