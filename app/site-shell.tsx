@@ -3,18 +3,27 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Logo() {
-  return <Link className="official-logo" href="/" aria-label="Paris Passion Events home"><Image src="/paris-passion-logo.png" width={177} height={139} alt="Paris Passion Events — adding colour to your events" /></Link>;
+  return <Link className="official-logo" href="/" aria-label="Paris Passion Events home"><Image src="/paris-passion-logo-white.png" width={520} height={421} alt="Paris Passion Events — adding colour to your events" /></Link>;
 }
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const current = pathname.split("/").filter(Boolean).pop() ?? "home";
+  const isActive = (href: string) => href === "/"
+    ? !["experiences", "journey", "contact"].includes(current)
+    : current === href.slice(1);
   return <header className="site-header inner-header">
     <Logo />
     <button className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="site-nav"><span>{open ? "Close" : "Menu"}</span><i /></button>
     <nav id="site-nav" className={open ? "nav open" : "nav"} aria-label="Primary navigation">
-      <Link href="/">Home</Link><Link href="/experiences">Experiences</Link><Link href="/journey">Journey</Link><Link href="/contact">Contact</Link>
+      <Link className={isActive("/") ? "active" : ""} aria-current={isActive("/") ? "page" : undefined} href="/">Home</Link>
+      <Link className={isActive("/experiences") ? "active" : ""} aria-current={isActive("/experiences") ? "page" : undefined} href="/experiences">Experiences</Link>
+      <Link className={isActive("/journey") ? "active" : ""} aria-current={isActive("/journey") ? "page" : undefined} href="/journey">Journey</Link>
+      <Link className={isActive("/contact") ? "active" : ""} aria-current={isActive("/contact") ? "page" : undefined} href="/contact">Contact</Link>
       <Link className="button button-small" href="/contact">Discuss Your Requirement</Link>
     </nav>
   </header>;
