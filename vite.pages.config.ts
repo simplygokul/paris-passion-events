@@ -11,6 +11,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "next/image": path.resolve(projectRoot, "src/static-image.tsx"),
+      "next/link": path.resolve(projectRoot, "src/static-link.tsx"),
     },
   },
   build: {
