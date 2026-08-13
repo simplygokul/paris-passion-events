@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function Logo() {
-  return <Link className="official-logo" href="/" aria-label="Paris Passion Events home"><Image src="/paris-passion-logo-white.png" width={520} height={421} alt="Paris Passion Events — adding colour to your events" /></Link>;
+export function Logo({ placement = "footer" }: { placement?: "header" | "footer" }) {
+  return <Link className={`official-logo ${placement}-logo`} href="/" aria-label="Paris Passion Events home"><Image src="/paris-passion-logo-white.png" width={520} height={421} alt="Paris Passion Events — adding colour to your events" /></Link>;
 }
 
 export function Header() {
@@ -17,7 +17,7 @@ export function Header() {
     ? !["experiences", "journey", "contact"].includes(current)
     : current === href.slice(1);
   return <header className="site-header inner-header">
-    <Logo />
+    <Logo placement="header" />
     <button className="menu-toggle" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="site-nav"><span>{open ? "Close" : "Menu"}</span><i /></button>
     <nav id="site-nav" className={open ? "nav open" : "nav"} aria-label="Primary navigation">
       <Link className={isActive("/") ? "active" : ""} aria-current={isActive("/") ? "page" : undefined} href="/">Home</Link>
