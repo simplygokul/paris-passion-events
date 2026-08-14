@@ -31,7 +31,7 @@ export function Header() {
 
 export function Footer() {
   return <footer className="business-footer">
-    <div className="footer-brand"><Logo /><p>Experienced event, activation and project support since 2000.</p></div>
+    <div className="footer-brand"><Logo /><p>Professional event management and coordination since 2000.</p></div>
     <div><p className="footer-label">Explore</p><Link href="/experiences">Experiences</Link><Link href="/journey">Our Journey</Link><Link href="/contact">Contact</Link></div>
     <div><p className="footer-label">Contact</p><a href="tel:+919393322449">+91 93933 22449</a><a href="mailto:parispassionevents@gmail.com">parispassionevents@gmail.com</a><p>Visakhapatnam, Andhra Pradesh</p></div>
     <p className="footer-end">Paris Passion Events · Established 2000</p>

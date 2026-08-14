@@ -6,12 +6,29 @@ import { PageShell } from "../site-shell";
 
 export default function ContactPage() {
   const [message,setMessage] = useState("");
-  function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); setMessage("Thank you. This demo form is ready to be connected to enquiry delivery before launch."); }
+  function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const subject = `Event enquiry from ${form.get("name")} — ${form.get("organisation")}`;
+    const body = [
+      `Name: ${form.get("name")}`,
+      `Organisation: ${form.get("organisation")}`,
+      `Phone: ${form.get("phone")}`,
+      `Email: ${form.get("email")}`,
+      `Requirement Type: ${form.get("requirement")}`,
+      `Location: ${form.get("location") || "Not specified"}`,
+      `Expected Date: ${form.get("date") || "Not specified"}`,
+      "",
+      `Short Description: ${form.get("description")}`,
+    ].join("\n");
+    setMessage("Your email application will open with the enquiry details. Please review and send the email.");
+    window.location.href = `mailto:parispassionevents@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
   return <PageShell>
     <section className="contact-page">
-      <div className="contact-page-intro"><p className="eyebrow">Start a conversation</p><h1>Tell us what you’re <em>planning.</em></h1><p>Every successful engagement starts with understanding the objective. Share the context, audience and expected outcome, and we can begin a practical conversation about the moving parts.</p><div className="direct-contact"><div><span>Phone / WhatsApp</span><a href="tel:+919393322449">+91 93933 22449</a></div><div><span>Email</span><a href="mailto:parispassionevents@gmail.com">parispassionevents@gmail.com</a></div><div><span>Origin</span><p>Visakhapatnam, Andhra Pradesh</p></div></div></div>
-      <form className="full-contact-form" onSubmit={submit}><div className="field-pair"><label>Name<input name="name" autoComplete="name" required /></label><label>Organisation<input name="organisation" autoComplete="organization" required /></label></div><div className="field-pair"><label>Phone<input name="phone" type="tel" autoComplete="tel" required /></label><label>Email<input name="email" type="email" autoComplete="email" required /></label></div><div className="field-pair"><label>Requirement type<select name="requirement" defaultValue="" required><option value="" disabled>Select a category</option>{experiences.map(item=><option key={item.slug} value={item.slug}>{item.title}</option>)}<option value="integrated">Integrated / Other requirement</option></select></label><label>Location<input name="location" /></label></div><label>Expected date<input name="date" type="date" /></label><label>Short description<textarea name="description" rows={6} placeholder="Tell us about the objective, audience, scale and the support you may need." required /></label><button className="button" type="submit">Send Enquiry <span>→</span></button><p className="form-status" aria-live="polite">{message || "Your details will be used only to respond to this enquiry."}</p></form>
+      <div className="contact-page-intro"><p className="eyebrow">Contact us</p><h1>Tell Us About Your <em>Requirement</em></h1><p>Share your event details with us and our team will get in touch to understand your requirement.</p><div className="direct-contact"><div><span>Phone / WhatsApp</span><a href="tel:+919393322449">+91 93933 22449</a></div><div><span>Email</span><a href="mailto:parispassionevents@gmail.com">parispassionevents@gmail.com</a></div><div><span>Location</span><p>Visakhapatnam, Andhra Pradesh</p></div></div></div>
+      <form className="full-contact-form" onSubmit={submit}><div className="field-pair"><label>Name<input name="name" autoComplete="name" required /></label><label>Organisation<input name="organisation" autoComplete="organization" required /></label></div><div className="field-pair"><label>Phone<input name="phone" type="tel" autoComplete="tel" required /></label><label>Email<input name="email" type="email" autoComplete="email" required /></label></div><div className="field-pair"><label>Requirement Type<select name="requirement" defaultValue="" required><option value="" disabled>Select a category</option>{experiences.map(item=><option key={item.slug} value={item.title}>{item.title}</option>)}<option value="Integrated / Other Requirement">Integrated / Other Requirement</option></select></label><label>Location<input name="location" /></label></div><label>Expected Date<input name="date" type="date" /></label><label>Short Description<textarea name="description" rows={6} placeholder="Tell us about the event and the support you require." required /></label><button className="button" type="submit">Send Enquiry <span>→</span></button><p className="form-status" aria-live="polite">{message || "Your details will be used only to respond to this enquiry."}</p></form>
     </section>
-    <section className="contact-assurance paper-section"><p className="eyebrow">What happens next</p><div><h2>We begin by understanding—not by assuming.</h2><p>An initial conversation helps clarify the objective, format, location, audience, timeline and responsibility expected from Paris Passion. From there, the relevant event, production, branding, travel, hospitality and coordination workstreams can be mapped.</p></div></section>
+    <section className="contact-assurance paper-section"><p className="eyebrow">What happens next</p><div><h2>Our team will understand your requirement.</h2><p>We will discuss the event type, location, expected date, audience and services required. Based on the details, we can identify the next steps for planning and coordination.</p></div></section>
   </PageShell>;
 }
