@@ -48,7 +48,7 @@ export default function Home() {
     </section>
 
     <section className="journey-preview ink-section">
-      <Image src="/images/activation-india.png" alt="Representative Indian brand activation" width={1536} height={1024} sizes="42vw" />
+      <Image src="/images/journey-beginning.png" alt="Representative Indian outdoor promotional activity from Paris Passion’s early journey" width={1536} height={1024} sizes="42vw" />
       <div><p className="eyebrow">Our journey</p><h2>More than two decades of <em>event experience.</em></h2><p>Paris Passion began in Visakhapatnam in 2000 and has grown from promotions and brand activities into wider event, MICE and project coordination support.</p><ArrowLink href="/journey">Read our journey</ArrowLink></div>
     </section>
 

@@ -5,8 +5,13 @@ import { defineConfig } from "vite";
 
 const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
+// GitHub Pages project site uses "/paris-passion-events/".
+// Custom domain (www.parispassionevents.com) should build with SITE_BASE=/
+// Example: SITE_BASE=/ npm run build:pages
+const siteBase = process.env.SITE_BASE || "/paris-passion-events/";
+
 export default defineConfig({
-  base: "/paris-passion-events/",
+  base: siteBase.endsWith("/") ? siteBase : `${siteBase}/`,
   plugins: [react()],
   resolve: {
     alias: {

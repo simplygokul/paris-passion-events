@@ -9,6 +9,8 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "build:pages": "vite build --config vite.pages.config.ts && node scripts/build-pages.mjs",
+    "build:pages:root": "node scripts/build-pages-root.mjs",
+    "preview:pages": "vite preview --config vite.pages.config.ts --host 127.0.0.1 --port 4173",
     "start": "vinext start",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern gh-pages-dist",
